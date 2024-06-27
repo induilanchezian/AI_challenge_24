@@ -1,11 +1,13 @@
 import json
-import joblib
+#import joblib
+import pickle
 from azureml.core.model import Model
 
 def init():
     global model
     model_path = Model.get_model_path('accident_forecasting_model')
-    model = joblib.load(model_path)
+    # model = joblib.load(model_path)
+    model = pickle.load(open(model_path, 'rb'))
 
 def run(raw_data):
     try:
